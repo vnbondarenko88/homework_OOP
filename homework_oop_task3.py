@@ -28,6 +28,11 @@ class Student:
         f"\nКурсы в процессе изучения: {', '.join(self.courses_in_progress)}\nЗавершенные курсы: {','.join(self.finished_courses)}"
 
 
+    def __lt__(self, other):
+        if isinstance(other, Student):
+            return self.average_rating() < other.average_rating()
+
+
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -47,8 +52,14 @@ class Lecturer(Mentor):
         # list_grades = [list_grades for all_grades in self.grades.values() for list_grades in all_grades]
         # return sum(list_grades) / len(list_grades)
 
+
+    def __lt__(self, other):
+        if isinstance(other, Lecturer):
+            return self.average_rating() < other.average_rating()
+
+
     def __str__(self):
-        return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.average_rating()}"
+        return f"\nИмя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.average_rating()}"
     
 
 class Reviewer(Mentor):
@@ -73,18 +84,28 @@ student_1.courses_in_progress += ['Python']
 student_1.courses_in_progress += ['Git']
 student_1.finished_courses += ['Введение в программирование']
 
+
+
 lecturer_1 = Lecturer('Sam', 'Frodo')
 lecturer_1.courses_attached += ['Python']
 student_1.rate_lecturer(lecturer_1, 'Python', 10)
 student_1.rate_lecturer(lecturer_1, 'Python', 7)
 student_1.rate_lecturer(lecturer_1, 'Python', 9)
 
+lecturer_2 = Lecturer('Jonn', 'Davis')
+lecturer_2.courses_attached += ['Python']
+student_1.rate_lecturer(lecturer_2, 'Python', 10)
+student_1.rate_lecturer(lecturer_2, 'Python', 10)
+student_1.rate_lecturer(lecturer_2, 'Python', 9)
+
 reviewer_1 = Reviewer('Brus', 'Lee')
 reviewer_1.courses_attached += ['Python']
 reviewer_1.rate_hw_student(student_1, 'Python', 10)
 reviewer_1.rate_hw_student(student_1, 'Python', 10)
 reviewer_1.rate_hw_student(student_1, 'Python', 10)
-print(student_1)
-print(student_1.grades)
-print(lecturer_1.grades)
-print(lecturer_1)
+
+print(lecturer_1 < lecturer_2)
+# print(student_1)
+# print(student_1.grades)
+# print(lecturer_1.grades)
+# print(lecturer_2)
