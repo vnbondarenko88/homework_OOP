@@ -25,7 +25,7 @@ class Student:
 
     def __str__(self):
         return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.average_rating()}" + \
-        f"\nКурсы в процессе изучения: {', '.join(self.courses_in_progress)}\nЗавершенные курсы: {','.join(self.finished_courses)}"
+            f"\nКурсы в процессе изучения: {', '.join(self.courses_in_progress)}\nЗавершенные курсы: {','.join(self.finished_courses)}"
 
 
     def __lt__(self, other):
@@ -78,12 +78,10 @@ class Reviewer(Mentor):
             return 'Ошибка'
  
 
-
 student_1 = Student('David', 'Smith', 'your_gender')
 student_1.courses_in_progress += ['Python']
 student_1.courses_in_progress += ['Git']
 student_1.finished_courses += ['Введение в программирование']
-
 
 
 lecturer_1 = Lecturer('Sam', 'Frodo')
@@ -105,7 +103,7 @@ reviewer_1.rate_hw_student(student_1, 'Python', 10)
 reviewer_1.rate_hw_student(student_1, 'Python', 10)
 
 print(lecturer_1 < lecturer_2)
-# print(student_1)
-# print(student_1.grades)
-# print(lecturer_1.grades)
-# print(lecturer_2)
+print(student_1)
+print(student_1.grades)
+print(lecturer_1.grades)
+print(lecturer_2)
