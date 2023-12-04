@@ -17,6 +17,7 @@ class Student:
         else:
             return 'Ошибка'
         
+
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -27,6 +28,7 @@ class Lecturer(Mentor):
     def __init__(self, name, surname):
         self.courses_attached =[]
         self.grades = {}
+
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -42,7 +44,6 @@ class Reviewer(Mentor):
         else:
             return 'Ошибка'
  
-
 
 student_1 = Student('David', 'Smith', 'your_gender')
 student_1.courses_in_progress += ['Python']

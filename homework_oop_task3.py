@@ -18,19 +18,19 @@ class Student:
             return 'Ошибка'
 
 
-    def average_rating(self):
-        average_list = list(self.grades.values())
-        return (sum(average_list[0]) / len(average_list[0]))    
+    def all_average_rating(self):
+        list_grades = [list_grades for all_grades in self.grades.values() for list_grades in all_grades]
+        return sum(list_grades) / len(list_grades)   
 
 
     def __str__(self):
-        return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.average_rating()}" + \
+        return f"Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.all_average_rating()}" + \
             f"\nКурсы в процессе изучения: {', '.join(self.courses_in_progress)}\nЗавершенные курсы: {','.join(self.finished_courses)}"
 
 
     def __lt__(self, other):
         if isinstance(other, Student):
-            return self.average_rating() < other.average_rating()
+            return self.all_average_rating() < other.all_average_rating()
 
 
 class Mentor:
@@ -46,20 +46,18 @@ class Lecturer(Mentor):
         self.grades = {}
 
 
-    def average_rating(self):
-        average_list = list(self.grades.values())
-        return (sum(average_list[0]) / len(average_list[0]))
-        # list_grades = [list_grades for all_grades in self.grades.values() for list_grades in all_grades]
-        # return sum(list_grades) / len(list_grades)
+    def all_average_rating(self):
+        list_grades = [list_grades for all_grades in self.grades.values() for list_grades in all_grades]
+        return sum(list_grades) / len(list_grades)
 
 
     def __lt__(self, other):
         if isinstance(other, Lecturer):
-            return self.average_rating() < other.average_rating()
+            return self.all_average_rating() < other.all_average_rating()
 
 
     def __str__(self):
-        return f"\nИмя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.average_rating()}"
+        return f"\nИмя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.all_average_rating()}"
     
 
 class Reviewer(Mentor):

@@ -96,12 +96,22 @@ class Reviewer(Mentor):
             return 'Ошибка'
  
 
-def average_grade(students_list, course):
+def average_grade_student(students_list, course):
     sum = 0
     sum_len = 0
     for stud in students_list:
         stud_sum = stud.average_rating(course)
         sum += stud_sum
+        sum_len += 1
+    result = sum / sum_len
+    return print(result)
+
+def average_grade_lecturer(lecturer_list, course):
+    sum = 0
+    sum_len = 0
+    for lec in lecturer_list:
+        lec_sum = lec.average_rating(course)
+        sum += lec_sum
         sum_len += 1
     result = sum / sum_len
     return print(result)
@@ -121,15 +131,15 @@ lecturer_1 = Lecturer('Sam', 'Frodo')
 lecturer_1.courses_attached += ['Python']
 lecturer_1.courses_attached += ['Git']
 student_1.rate_lecturer(lecturer_1, 'Python', 10)
-student_1.rate_lecturer(lecturer_1, 'Python', 9)
-student_1.rate_lecturer(lecturer_1, 'Python', 9)
-student_2.rate_lecturer(lecturer_1, 'Git', 6)
+student_1.rate_lecturer(lecturer_1, 'Python', 3)
+student_1.rate_lecturer(lecturer_1, 'Python', 4)
+student_2.rate_lecturer(lecturer_1, 'Git', 10)
 
 lecturer_2 = Lecturer('Jonn', 'Davis')
 lecturer_2.courses_attached += ['Python']
 student_2.rate_lecturer(lecturer_2, 'Python', 10)
-student_2.rate_lecturer(lecturer_2, 'Python', 10)
-student_2.rate_lecturer(lecturer_2, 'Python', 9)
+student_2.rate_lecturer(lecturer_2, 'Python', 6)
+student_2.rate_lecturer(lecturer_2, 'Python', 7)
 
 reviewer_1 = Reviewer('Brus', 'Lee')
 reviewer_1.courses_attached += ['Python']
@@ -160,4 +170,7 @@ print(student_1 < student_2)
 
 
 student_list = [student_1, student_2]
-average_grade(student_list, 'Python')
+average_grade_student(student_list, 'Python')
+
+lecturer_list = [lecturer_1, lecturer_2]
+average_grade_lecturer(lecturer_list, 'Python')
